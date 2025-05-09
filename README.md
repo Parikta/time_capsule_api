@@ -1,53 +1,127 @@
+# 🕒 Time Capsule API
 
-# Time Capsule API
+A backend API that allows users to create, store, and retrieve time-locked messages (capsules). Capsules can only be opened after a specified unlock time.
 
-This is a backend API to create and manage time-locked capsules. Each capsule can store a message and be unlocked at a specific time using an unlock code.
+---
 
-## Features
-- JWT authentication for user login and registration.
-- Create, update, delete, and view time capsules.
-- Time-locked capsules that can only be opened after the unlock date.
-- Automatic expiration of capsules 30 days after the unlock time.
+## 🚀 Project Overview
 
-## Setup Instructions
+This project is a RESTful API built using Node.js, Express.js, Sequelize (PostgreSQL), and JWT authentication. It allows users to:
 
-1. Clone the repository:
+- Register and log in securely.
+- Create time capsules with unlock dates.
+- View only capsules that are unlocked.
+- Automatically expire capsules once viewed or when they reach expiration.
+- Authenticate all capsule routes with JWT.
+- Cron job support for expiring capsules.
+
+---
+
+## 🛠️ Technologies Used
+
+- **Node.js** + **Express.js** – Backend API
+- **Sequelize** + **PostgreSQL** – Database ORM
+- **JWT** – Authentication
+- **Jest** + **Supertest** – Testing
+- **dotenv** – Environment variable management
+- **node-cron** – Scheduled job for expiring capsules
+
+---
+
+## 📦 Installation & Running Locally
+
+1. **Clone the repo**  
+   ```bash
+   git clone https://github.com/your-username/time-capsule-api.git
+   cd time-capsule-api
+   ```
+
+2. **Install dependencies**  
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**  
+   Create a `.env` file in the root directory:
+   ```env
+   PORT=5000
+   DB_HOST=localhost
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+   DB_NAME=your_db_name
+   DB_PORT=5432
+   JWT_SECRET=your_jwt_secret
+   ```
+
+4. **Create the database and run migrations**  
+   Make sure PostgreSQL is running, then:
+   ```bash
+   npx sequelize-cli db:create
+   npx sequelize-cli db:migrate
+   ```
+
+5. **Run the app**  
+   ```bash
+   npm start
+   ```
+
+   Server will run on `http://localhost:5000`
+
+---
+
+## 🧪 Running Tests
+
+Make sure your `.env` is configured for a test database. Then run:
 
 ```bash
-git clone https://github.com/yourusername/time-capsule-api.git
-cd time-capsule-api
+npm test
 ```
 
-2. Install dependencies:
+Tests use `Jest` and `Supertest` for API testing.
 
+To debug lingering handles:
 ```bash
-npm install
+npm test -- --detectOpenHandles
 ```
 
-3. Create a `.env` file from `.env.example` and provide your PostgreSQL credentials.
+---
 
-4. Run migrations:
+## ✅ Endpoints Overview
 
-```bash
-npx sequelize-cli db:migrate
+### Auth
+
+- `POST /auth/register` – Register a user
+- `POST /auth/login` – Login and get JWT
+
+### Capsules (requires `Authorization: Bearer <token>`)
+
+- `POST /capsules` – Create a time capsule
+- `GET /capsules` – Get unlocked capsules
+- `GET /capsules/:id` – View and auto-expire a capsule
+
+---
+
+## 🧠 Assumptions and Tradeoffs
+
+- Capsules are considered "expired" once read or past their unlock time.
+- Time comparisons use UTC. Ensure all dates are in ISO 8601 format.
+- JWT tokens do not support refresh logic (can be extended if needed).
+- No frontend included — this is a backend-only API.
+- Cron job uses `node-cron` and runs on startup; does not persist schedule across restarts.
+
+---
+
+## 📂 Folder Structure
+
 ```
-
-5. Run the application:
-
-```bash
-npm start
+.
+├── controllers/
+├── routes/
+├── models/
+├── middleware/
+├── cron/
+├── tests/
+├── index.js
+└── .env
 ```
-
-6. Test the API:
-
-```bash
-npm run test
-```
-
-## Endpoints
-- POST `/auth/register`: Register a new user.
-- POST `/auth/login`: Login and receive a JWT.
-- POST `/capsules`: Create a new capsule.
-- GET `/capsules/:id`: Get a time capsule.
-
 

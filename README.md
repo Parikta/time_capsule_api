@@ -58,7 +58,7 @@ This project is a RESTful API built using Node.js, Express.js, Sequelize (Postgr
 
 ---
 
-## 🧪 Running Tests
+##  Running Tests
 
 Make sure your `.env` is configured for a test database. Then run:
 
@@ -90,7 +90,7 @@ npm test -- --detectOpenHandles
 
 ---
 
-## 🧠 Assumptions and Tradeoffs
+##  Assumptions and Tradeoffs
 
 - Capsules are considered "expired" once read or past their unlock time.
 - Time comparisons use UTC. Ensure all dates are in ISO 8601 format.

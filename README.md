@@ -17,17 +17,6 @@ This project is a RESTful API built using Node.js, Express.js, Sequelize (Postgr
 
 ---
 
-## 🛠️ Technologies Used
-
-- **Node.js** + **Express.js** – Backend API
-- **Sequelize** + **PostgreSQL** – Database ORM
-- **JWT** – Authentication
-- **Jest** + **Supertest** – Testing
-- **dotenv** – Environment variable management
-- **node-cron** – Scheduled job for expiring capsules
-
----
-
 ## 📦 Installation & Running Locally
 
 1. **Clone the repo**  

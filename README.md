@@ -21,7 +21,7 @@ This project is a RESTful API built using Node.js, Express.js, Sequelize (Postgr
 
 1. **Clone the repo**  
    ```bash
-   git clone https://github.com/your-username/time-capsule-api.git
+   git clone https://github.com/Parikta/time_capsule_api
    cd time-capsule-api
    ```
 

@@ -50,5 +50,4 @@ npm run test
 - POST `/capsules`: Create a new capsule.
 - GET `/capsules/:id`: Get a time capsule.
 
-## License
-MIT
+
